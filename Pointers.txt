@@ -1,0 +1,56 @@
+//single pointers
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a1 = 10;
+	int* a;
+	int arr[5] = {1, 2, 3, 4, 5};
+	a = &a1;
+
+	cout << a1 << endl;
+	cout << a << endl;
+	cout << &a << endl;
+	cout << *a << endl;
+	cout << &a1 << endl;
+	cout << "-----------\n";
+
+	a = arr;   //dynamic p=static p
+	cout << a << endl;
+	cout << arr << endl;
+	cout << *(arr+2) << endl;
+	cout << arr[2] << endl;
+
+	return 0;
+}
+
+-------------------------------------------------
+//double pointers
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a = 10;
+	int* a1;
+	int** a2;
+	int arr1[3][3]= {{1,2,3},{4,5,6},{7,8,9}};
+
+	a1 = &a;
+	a2 = &a1;
+
+	cout << a2 << endl;
+	cout << &a1 << endl;
+	cout << &a2 << endl;
+	cout << *a2 << endl;
+	cout << a1 << endl;
+	cout << **a2 << endl;
+	cout << a << endl;
+	cout << "------------------" << endl;
+
+	
+	cout << *(*(arr1 + 1) + 2);
+
+	return 0;
+}

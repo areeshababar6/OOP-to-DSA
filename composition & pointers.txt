@@ -1,0 +1,93 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+class leaves
+{
+private:
+	string color;
+	int size;
+public:
+	leaves();
+	leaves(string, int);
+	void display();
+	void set(string, int);
+};
+leaves::leaves()
+{
+	color = "green";
+	size = 1;
+}
+leaves::leaves(string c, int s)
+{
+	color = c; size = s;
+}
+void leaves::display()
+{
+	cout << " Color: " << color << endl;
+	cout << " Size: " << size << endl;
+}
+void leaves::set(string c, int s)
+{
+	color = c; size = s;
+}
+
+//------------------------------
+
+//composition
+
+class tree
+{
+private:
+	leaves* l;       //Dynamic memory allocation
+	int nol;
+public:
+	tree(int);
+	void setNoL(int);
+	void setL();
+	void print();
+	~tree();
+};
+tree::tree(int n)
+{
+	nol = n;
+	setL();
+}
+void tree::setNoL(int n)
+{
+	nol = n;
+	setL();
+}
+void tree::setL()
+{
+	l = new leaves[nol];
+
+	for (int i = 0; i < nol; i++)
+	{
+		if(i%2==0)
+			l[i].set("green", 2);
+		else
+			l[i].set("brown", 1);
+	}
+}
+void tree::print()
+{
+	cout << " Displaying tree..." << endl;
+
+	for (int i = 0; i < nol; i++)
+		l[i].display();
+}
+tree::~tree()
+{
+	delete[] l;
+}
+int main()
+{
+	int n;
+	cin >> n;
+
+	tree t(n);
+	t.print();
+
+	return 0;
+}

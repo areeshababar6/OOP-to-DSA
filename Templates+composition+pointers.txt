@@ -1,0 +1,199 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+template <typename t, typename t1>
+class chairs
+{
+private:
+	t height;
+	t1 color;
+public:
+	chairs();
+	void setValues(t, t1);
+	void display();
+};
+template <typename t, typename t1>
+chairs<t, t1>::chairs()
+{
+	height = 0;
+	color ='-';
+}
+template <typename t, typename t1>
+void chairs<t, t1>::setValues(t h, t1 c)
+{
+	height = h; color = c;
+}
+template <typename t, typename t1>
+void chairs<t, t1>::display()
+{
+	cout << " Height: " << height << endl;
+	cout << " Color: " << color << endl;
+}
+template <typename t2, typename t3>
+class table
+{
+private:
+	chairs<t2, t3>* c;
+	int num;
+public:
+	table(int);
+	void setN(int);
+	void setArr();
+	void print();
+	~table();
+};
+template <typename t2, typename t3>
+table<t2, t3>::table(int n)
+{
+	num = n;
+	setArr();
+}
+template <typename t2, typename t3>
+void table<t2, t3>::setN(int n)
+{
+	num = n;
+	setArr();
+}
+template <typename t2, typename t3>
+void table<t2, t3>::setArr()
+{
+	c = new chairs<t2,t3>[num];
+
+	t2 h;
+	t3 c1;
+	for (int i = 0; i < num; i++)
+	{
+		cout << " For chair " << i + 1 << " :" << endl;
+		cout << " Enter height: ";
+		cin >> h;
+		cout << " Enter color: ";
+		cin >> c1;
+
+		c[i].setValues(h, c1);
+	}
+}
+template <typename t2, typename t3>
+void table<t2, t3>::print()
+{
+	cout << " \n";
+	for (int i = 0; i < num; i++)
+	{
+		cout << "\n";
+		c[i].display();
+	}
+}
+template <typename t2, typename t3>
+table<t2, t3>::~table()
+{
+	delete[] c;
+}
+int main()
+{
+	table<double, string> t4(3);
+
+	t4.print();
+	return 0;
+}
+
+-----------------------------------------
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+template <typename t>
+class chairs
+{
+private:
+	t height;
+	string color;
+public:
+	chairs();
+	void setValues(t, string);
+	void display();
+};
+template <typename t>
+chairs<t>::chairs()
+{
+	height = 0;
+	color = "-";
+}
+template <typename t>
+void chairs<t>::setValues(t h, string c)
+{
+	height = h; color = c;
+}
+template <typename t>
+void chairs<t>::display()
+{
+	cout << " Height: " << height << endl;
+	cout << " Color: " << color << endl;
+}
+template <typename t2>
+class table
+{
+private:
+	chairs<t2>* c;
+	int num;
+public:
+	table(int);
+	void setN(int);
+	void setArr();
+	void print();
+	~table();
+};
+template <typename t2>
+table<t2>::table(int n)
+{
+	num = n;
+	setArr();
+}
+template <typename t2>
+void table<t2>::setN(int n)
+{
+	num = n;
+	setArr();
+}
+template <typename t2>
+void table<t2>::setArr()
+{
+	c = new chairs<int>[num];
+
+	t2 h;
+	string c1;
+	for (int i = 0; i < num; i++)
+	{
+		cout << " For chair " << i + 1 << " :" << endl;
+		cout << " Enter height: ";
+		cin >> h;
+		cout << " Enter color: ";
+		cin >> c1;
+
+		c[i].setValues(h, c1);
+	}
+}
+template <typename t2>
+void table<t2>::print()
+{
+	cout << "\n";
+	for (int i = 0; i < num; i++)
+	{
+		cout << "\n";
+		c[i].display();
+	}
+}
+template <typename t2>
+table<t2>::~table()
+{
+	delete[] c;
+}
+int main()
+{
+	table<int> t4(3);
+
+	t4.print();
+	return 0;
+}
